@@ -101,3 +101,4 @@ export const CalculatorFormSchema = z
   })
 
 export type CalculatorFormValues = z.infer<typeof CalculatorFormSchema>
+export type CalculatorFormInput = z.input<typeof CalculatorFormSchema>
