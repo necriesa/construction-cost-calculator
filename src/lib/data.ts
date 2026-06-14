@@ -40,3 +40,19 @@ export const STATES = [
   { value: "ACT", label: "Australian Capital Territory" },
   { value: "NT", label: "Northern Territory" },
 ]
+
+export const INCLUSIONS = [
+  { value: "hasBasement", label: "Basement" },
+  { value: "hasElevator", label: "Elevator" },
+  { value: "hasMezzanine", label: "Mezzanine" },
+  { value: "hasDuctedAC", label: "Ducted Air-Con" },
+]
+
+export const INCLUSIONS_BY_TYPE: Record<string, string[]> = {
+  House: ["hasBasement", "hasElevator", "hasDuctedAC"],
+  "Granny Flat": ["hasDuctedAC"],
+  Townhouse: ["hasBasement", "hasDuctedAC"],
+  Apartment: ["hasBasement", "hasElevator", "hasDuctedAC"],
+  Office: ["hasBasement", "hasElevator", "hasMezzanine", "hasDuctedAC"],
+  Warehouse: ["hasBasement", "hasMezzanine", "hasDuctedAC"],
+}

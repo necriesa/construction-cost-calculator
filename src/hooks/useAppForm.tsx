@@ -5,6 +5,7 @@ import FormStepper from "@/components/form/FormStepper"
 import FormSlider from "@/components/form/FormSlider"
 import FormInput from "@/components/form/FormInput"
 import FormSelect from "@/components/form/FormSelect"
+import FormSwitchCard from "@/components/form/FormSwitchCard"
 
 const { useAppForm } = createFormHook({
   fieldComponents: {
@@ -13,6 +14,7 @@ const { useAppForm } = createFormHook({
     pillSelector: FormPillSelector,
     stepper: FormStepper,
     slider: FormSlider,
+    switchCard: FormSwitchCard,
   },
   formComponents: {},
   fieldContext,
