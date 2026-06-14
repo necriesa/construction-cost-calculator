@@ -13,7 +13,7 @@ export const CalculatorFormSchema = z
     completionYear: z
       .string()
       .transform((val) => parseInt(val, 10))
-      .pipe(z.number().min(1987).max(new Date().getFullYear())),
+      .pipe(z.number().min(1986).max(new Date().getFullYear())),
     state: z.enum(["NSW", "VIC", "QLD", "SA", "WA", "TAS", "ACT", "NT"]),
     buildType: z.enum(["new", "kdr", "renl", "renm", "ext", "gf"]),
     finishLevel: z.enum(["economy", "standard", "premium", "luxury"]),
