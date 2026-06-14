@@ -20,7 +20,7 @@ const FormSelect = ({
     <FormBase {...props}>
       <Select
         onValueChange={(e) => field.handleChange(e)}
-        value={field.state.value}
+        value={field.state.value || props.placeholder}
       >
         <SelectTrigger
           aria-invalid={isInvalid}

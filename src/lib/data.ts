@@ -30,7 +30,7 @@ export const WALL_TYPES = [
 ]
 
 export const STATES = [
-  { value: "", label: "Select state…" },
+  { value: "default", label: "Select state…" },
   { value: "NSW", label: "New South Wales" },
   { value: "VIC", label: "Victoria" },
   { value: "QLD", label: "Queensland" },
