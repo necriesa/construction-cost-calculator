@@ -17,20 +17,20 @@ const FormSlider = ({
   formatValue,
   ...props
 }: FormSliderProps) => {
-  const field = useFieldContext<number[]>()
+  const field = useFieldContext<number>()
   const isInvalid = field.state.meta.isTouched && !field.state.meta.isValid
 
   // Override description to show live value if formatValue is provided
   const description = formatValue
-    ? formatValue(field.state.value)
+    ? formatValue([field.state.value])
     : props.description
 
   return (
     <FormBase {...props} description={description}>
       <Slider
         id={field.name}
-        value={field.state.value}
-        onValueChange={field.handleChange}
+        value={[field.state.value]}
+        onValueChange={([val]) => field.handleChange(val)}
         onBlur={field.handleBlur}
         min={min}
         max={max}

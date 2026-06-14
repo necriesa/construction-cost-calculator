@@ -56,3 +56,16 @@ export const INCLUSIONS_BY_TYPE: Record<string, string[]> = {
   Office: ["hasBasement", "hasElevator", "hasMezzanine", "hasDuctedAC"],
   Warehouse: ["hasBasement", "hasMezzanine", "hasDuctedAC"],
 }
+
+export const PROPERTIES_WITH_WALL_OPTIONS = [
+  "House",
+  "Townhouse",
+  "Granny Flat",
+] // property types that can have their walls chosen
+
+export const PROPERTIES_WITH_BEDROOMS = [
+  "House",
+  "Granny Flat",
+  "Townhouse",
+  "Apartment",
+]

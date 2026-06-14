@@ -13,12 +13,14 @@ const FormStepper = ({ min, max, ...props }: FormStepperProps) => {
 
   return (
     <FormBase {...props}>
-      <Stepper
-        value={field.state.value}
-        onChange={field.handleChange}
-        min={min}
-        max={max}
-      />
+      <div className="flex">
+        <Stepper
+          value={field.state.value}
+          onChange={field.handleChange}
+          min={min}
+          max={max}
+        />
+      </div>
     </FormBase>
   )
 }
