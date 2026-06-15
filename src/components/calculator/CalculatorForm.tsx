@@ -57,7 +57,7 @@ const CalculatorForm = () => {
   return (
     <div className="overflow-hidden rounded-md border border-border bg-background shadow-lg">
       <form>
-        <div className="text-md items-center bg-primary/50 p-4 pl-8 font-medium text-primary-foreground">
+        <div className="text-md items-center bg-primary p-4 pl-8 font-medium text-primary-foreground">
           Property Details
         </div>
         <FieldGroup className="p-6">

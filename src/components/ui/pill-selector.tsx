@@ -42,7 +42,7 @@ function PillSelector({
               "focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1",
               selected
                 ? "border-primary bg-primary text-primary-foreground"
-                : "border-border bg-background text-muted-foreground hover:border-primary hover:bg-accent hover:text-primary"
+                : "border-border bg-background text-muted-foreground hover:border-accent hover:bg-accent/20 hover:text-accent"
             )}
           >
             {opt.label}
