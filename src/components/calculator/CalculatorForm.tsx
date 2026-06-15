@@ -97,7 +97,7 @@ const CalculatorForm = ({ onValuesChange }: CalculatorFormProps) => {
   }
 
   return (
-    <div className="overflow-hidden rounded-md border border-border bg-background shadow-lg">
+    <div className="overflow-hidden rounded-md bg-background shadow-lg dark:bg-primary-foreground/10">
       <form>
         <div className="text-md items-center bg-primary p-4 pl-8 font-medium text-primary-foreground">
           Property Details

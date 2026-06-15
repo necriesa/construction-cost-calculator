@@ -29,11 +29,11 @@ const ResultsPanel = ({ results, formValues }: ResultsPanelProps) => {
 
   return (
     <div className="flex flex-col gap-4">
-      <div className="rounded-lg border bg-primary p-7 shadow">
-        <h2 className="mb-1 text-sm font-semibold tracking-wider text-muted-foreground uppercase">
+      <div className="rounded-lg bg-primary p-7 shadow">
+        <h2 className="mb-1 text-sm font-semibold tracking-wider text-primary-foreground/60 uppercase">
           Live Estimate
         </h2>
-        <h2 className="mb-6 text-xl leading-snug font-bold text-muted">
+        <h2 className="mb-6 text-xl leading-snug font-bold text-primary-foreground">
           {propertyLabel} &mdash; {finishLabel} Finish
         </h2>
 
@@ -44,10 +44,10 @@ const ResultsPanel = ({ results, formValues }: ResultsPanelProps) => {
                 <p className="mb-1 text-xs tracking-wide text-chart-2 uppercase">
                   Finish Level Estimate
                 </p>
-                <p className="text-4xl font-bold text-muted">
+                <p className="text-4xl font-bold text-primary-foreground">
                   {fmt(results.midEstimate)}
                 </p>
-                <p className="text-sm font-semibold text-muted-foreground">
+                <p className="text-sm font-semibold text-primary-foreground/60">
                   {fmt(results.ratePerSqm)}/m&sup2; &middot;{" "}
                   {formValues?.floorArea} m&sup2;
                 </p>
@@ -57,24 +57,24 @@ const ResultsPanel = ({ results, formValues }: ResultsPanelProps) => {
             <div className="mb-6 grid gap-6 md:grid-cols-2">
               <Card className="text-center" variant="outline">
                 <CardContent>
-                  <p className="text-md mb-1 font-semibold tracking-wide text-muted-foreground uppercase">
+                  <p className="text-md mb-1 font-semibold tracking-wide text-primary-foreground/60 uppercase">
                     Low Estimate
                   </p>
-                  <p className="text-2xl font-bold text-muted">
+                  <p className="text-2xl font-bold text-primary-foreground">
                     {fmt(results.lowEstimate)}
                   </p>
-                  <p className="text-xs text-muted-foreground">-8% variance</p>
+                  <p className="text-xs text-primary-foreground/60">-8% variance</p>
                 </CardContent>
               </Card>
               <Card className="text-center" variant="outline">
                 <CardContent>
-                  <p className="text-md mb-1 font-semibold tracking-wide text-muted-foreground uppercase">
+                  <p className="text-md mb-1 font-semibold tracking-wide text-primary-foreground/60 uppercase">
                     High Estimate
                   </p>
-                  <p className="text-2xl font-bold text-muted">
+                  <p className="text-2xl font-bold text-primary-foreground">
                     {fmt(results.highEstimate)}
                   </p>
-                  <p className="text-xs text-muted-foreground">+9% variance</p>
+                  <p className="text-xs text-primary-foreground/60">+9% variance</p>
                 </CardContent>
               </Card>
             </div>
@@ -91,14 +91,14 @@ const ResultsPanel = ({ results, formValues }: ResultsPanelProps) => {
 
         {results.isReady && (
           <>
-            <Separator className="bg-muted-foreground/50" />
+            <Separator className="bg-primary-foreground/20" />
 
             <BreakdownSection
               breakdown={results.breakdown}
               total={results.midEstimate}
             />
 
-            <Separator className="bg-muted-foreground/50" />
+            <Separator className="bg-primary-foreground/20" />
 
             <a
               href="https://duotax.com.au/construction-estimations/initial-cost-report/"
@@ -106,7 +106,7 @@ const ResultsPanel = ({ results, formValues }: ResultsPanelProps) => {
               rel="noopener noreferrer"
             >
               <Button
-                className="mt-6 w-full rounded-md bg-chart-2 p-6 font-bold text-muted hover:bg-chart-2/80"
+                className="mt-6 w-full rounded-md bg-chart-2 p-6 font-bold text-primary-foreground hover:bg-chart-2/80"
                 size="lg"
               >
                 Order Initial Cost Report <ArrowRight />
@@ -114,15 +114,15 @@ const ResultsPanel = ({ results, formValues }: ResultsPanelProps) => {
             </a>
 
             <Button
-              className="mt-4 w-full rounded-md p-6 font-bold text-muted-foreground"
+              className="mt-4 w-full rounded-md p-6 font-bold text-primary-foreground/70 border-primary-foreground/20 hover:bg-primary-foreground/10 hover:text-primary-foreground"
               variant="outline"
             >
               <MailIcon /> Email me these results
             </Button>
           </>
         )}
-        <div className="mt-6 rounded-md border border-accent/20 bg-accent/5 p-2">
-          <p className="text-xs leading-relaxed text-muted-foreground">
+        <div className="mt-6 rounded-md border border-primary-foreground/15 bg-primary-foreground/5 p-2">
+          <p className="text-xs leading-relaxed text-primary-foreground/50">
             <span className="font-bold">Disclaimer: </span>Please note that
             every effort has been made to ensure that the information provided
             in this guide is accurate. You should note, however, that the

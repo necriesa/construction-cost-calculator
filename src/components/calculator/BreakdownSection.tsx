@@ -16,7 +16,7 @@ const fmt = (n: number) =>
 const BreakdownSection = ({ breakdown, total }: BreakdownSectionProps) => {
   return (
     <div className="mt-4 mb-4 py-2">
-      <h3 className="mb-4 text-sm font-semibold tracking-wider text-muted-foreground uppercase">
+      <h3 className="mb-4 text-sm font-semibold tracking-wider text-primary-foreground/60 uppercase">
         Cost Breakdown
       </h3>
 
@@ -28,18 +28,18 @@ const BreakdownSection = ({ breakdown, total }: BreakdownSectionProps) => {
           return (
             <div key={i} className="flex items-start justify-between gap-4">
               <div className="min-w-0 flex-1">
-                <p className="text-sm font-semibold text-muted/80">
+                <p className="text-sm font-semibold text-primary-foreground/90">
                   {line.label}
                 </p>
                 {line.note && (
-                  <p className="text-xs text-muted-foreground">{line.note}</p>
+                  <p className="text-xs text-primary-foreground/50">{line.note}</p>
                 )}
               </div>
               <span
                 className={[
                   "shrink-0 text-sm font-semibold tabular-nums",
                   isFirst
-                    ? "text-muted"
+                    ? "text-primary-foreground"
                     : isPositive
                       ? "text-chart-2"
                       : "text-destructive",
@@ -53,10 +53,10 @@ const BreakdownSection = ({ breakdown, total }: BreakdownSectionProps) => {
         })}
       </div>
 
-      <Separator className="my-4 bg-muted-foreground/90" />
+      <Separator className="my-4 bg-primary-foreground/20" />
 
       <div className="flex items-center justify-between">
-        <span className="text-sm font-bold tracking-wide text-muted uppercase">
+        <span className="text-sm font-bold tracking-wide text-primary-foreground/60 uppercase">
           Finish Level Total
         </span>
         <span className="text-lg font-bold text-chart-2 tabular-nums">
