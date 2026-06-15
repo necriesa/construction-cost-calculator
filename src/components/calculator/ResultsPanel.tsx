@@ -119,23 +119,21 @@ const ResultsPanel = ({ results, formValues }: ResultsPanelProps) => {
             >
               <MailIcon /> Email me these results
             </Button>
-
-            <div className="mt-6 rounded-md border border-accent/20 bg-accent/5 p-2">
-              <p className="text-xs leading-relaxed text-muted-foreground">
-                <span className="font-bold">Disclaimer: </span>Please note that
-                every effort has been made to ensure that the information
-                provided in this guide is accurate. You should note, however,
-                that the information is intended as a guide only, providing an
-                overview of general information available to property investors.
-                This guide is not intended to be an exhaustive source of
-                information and should not be seen to constitute legal or tax
-                advice. You should, where necessary, seek a second professional
-                opinion for any legal or tax issues raised in your investing
-                affairs.
-              </p>
-            </div>
           </>
         )}
+        <div className="mt-6 rounded-md border border-accent/20 bg-accent/5 p-2">
+          <p className="text-xs leading-relaxed text-muted-foreground">
+            <span className="font-bold">Disclaimer: </span>Please note that
+            every effort has been made to ensure that the information provided
+            in this guide is accurate. You should note, however, that the
+            information is intended as a guide only, providing an overview of
+            general information available to property investors. This guide is
+            not intended to be an exhaustive source of information and should
+            not be seen to constitute legal or tax advice. You should, where
+            necessary, seek a second professional opinion for any legal or tax
+            issues raised in your investing affairs.
+          </p>
+        </div>
       </div>
     </div>
   )
