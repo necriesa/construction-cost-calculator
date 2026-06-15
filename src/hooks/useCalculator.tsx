@@ -12,6 +12,7 @@ import {
 } from "@/lib/calculatorRates"
 import type { FinishLevel, PropertyType, State, WallType } from "@/lib/calculatorRates"
 import type { CalculatorFormInput } from "@/lib/formSchemas"
+import { INCLUSIONS_BY_TYPE, PROPERTIES_WITH_BEDROOMS } from "@/lib/data"
 
 // ─── Output types ─────────────────────────────────────────────────────────────
 
@@ -105,14 +106,18 @@ export function useCalculator(
 
     // ── Small multipliers (bedrooms, storeys) ───────────────────────────────────
     const floors = (numFloors as number | undefined) ?? 1
-    const bedroomMult = getBedroomMultiplier(numBedrooms as number | undefined)
+    const hasBedrooms = PROPERTIES_WITH_BEDROOMS.includes(propertyType)
+    const bedroomMult = hasBedrooms
+      ? getBedroomMultiplier(numBedrooms as number | undefined)
+      : 1
     const storeyMult = getStoreyMultiplier(floors)
 
     // ── Per-m² options + flat elevator ──────────────────────────────────────────
     const isCommercial = propertyType === "Office" || propertyType === "Warehouse"
+    const allowedInclusions = INCLUSIONS_BY_TYPE[propertyType] ?? []
     const options: { label: string; amount: number; note: string }[] = []
     let optionsPerArea = 0
-    if (hasBasement) {
+    if (hasBasement && allowedInclusions.includes("hasBasement")) {
       optionsPerArea += PER_M2_OPTIONS.basement
       options.push({
         label: "Basement",
@@ -120,7 +125,7 @@ export function useCalculator(
         note: `$${PER_M2_OPTIONS.basement}/m² × ${area} m²`,
       })
     }
-    if (hasDuctedAC) {
+    if (hasDuctedAC && allowedInclusions.includes("hasDuctedAC")) {
       optionsPerArea += PER_M2_OPTIONS.ductedAc
       options.push({
         label: "Ducted air-conditioning",
@@ -128,7 +133,7 @@ export function useCalculator(
         note: `$${PER_M2_OPTIONS.ductedAc}/m² × ${area} m²`,
       })
     }
-    if (hasMezzanine) {
+    if (hasMezzanine && allowedInclusions.includes("hasMezzanine")) {
       optionsPerArea += PER_M2_OPTIONS.mezzanine
       options.push({
         label: "Mezzanine floor",
@@ -136,7 +141,7 @@ export function useCalculator(
         note: `$${PER_M2_OPTIONS.mezzanine}/m² × ${area} m²`,
       })
     }
-    const elevatorRef = hasElevator ? ELEVATOR_FLAT : 0
+    const elevatorRef = hasElevator && allowedInclusions.includes("hasElevator") ? ELEVATOR_FLAT : 0
 
     // ── Reference subtotal (pre-index), then index, then finish ──────────────────
     const structuralRef = structuralRate * bedroomMult * storeyMult * area

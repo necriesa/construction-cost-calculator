@@ -34,7 +34,7 @@ const CalculatorForm = ({ onValuesChange }: CalculatorFormProps) => {
       state: undefined as string | undefined,
       completionYear: "2026",
       wallType: "bv",
-      numBedrooms: 2,
+      numBedrooms: 3,
       numFloors: 1,
       hasBasement: false,
       hasElevator: false,
@@ -52,16 +52,48 @@ const CalculatorForm = ({ onValuesChange }: CalculatorFormProps) => {
     onValuesChange?.(values)
   }, [values, onValuesChange])
 
+  // Reset inclusions and bedrooms when property type changes
+  const prevPropertyType = useStore(
+    form.baseStore,
+    (s) => s.values.propertyType
+  )
+  useEffect(() => {
+    const allowed = INCLUSIONS_BY_TYPE[prevPropertyType] ?? []
+    // Turn off any inclusions not supported by the new property type
+    for (const inc of INCLUSIONS) {
+      if (!allowed.includes(inc.value)) {
+        form.setFieldValue(
+          inc.value as keyof CalculatorFormInput,
+          false as never
+        )
+      }
+    }
+    // Reset bedrooms for property types that don't use them
+    if (!PROPERTIES_WITH_BEDROOMS.includes(prevPropertyType)) {
+      form.setFieldValue("numBedrooms", 0 as never)
+    } else {
+      // For types that do use bedrooms, reset to 3 (a common default) if currently 0
+      const currentBedrooms = form.getFieldValue("numBedrooms") as
+        | number
+        | undefined
+      if (currentBedrooms === 0) {
+        form.setFieldValue("numBedrooms", 3 as never)
+      }
+    }
+  }, [form, prevPropertyType])
+
   const renderInclusions = (propertyType: string) => {
     const allowed = INCLUSIONS_BY_TYPE[propertyType] ?? []
-    return INCLUSIONS.filter((inc) => allowed.includes(inc.value)).map((inc) => (
-      <form.AppField
-        key={inc.value}
-        name={inc.value as keyof CalculatorFormInput}
-      >
-        {(field) => <field.switchCard label={inc.label} />}
-      </form.AppField>
-    ))
+    return INCLUSIONS.filter((inc) => allowed.includes(inc.value)).map(
+      (inc) => (
+        <form.AppField
+          key={inc.value}
+          name={inc.value as keyof CalculatorFormInput}
+        >
+          {(field) => <field.switchCard label={inc.label} />}
+        </form.AppField>
+      )
+    )
   }
 
   return (
@@ -90,7 +122,10 @@ const CalculatorForm = ({ onValuesChange }: CalculatorFormProps) => {
 
           <form.AppField name="finishLevel">
             {(field) => (
-              <field.pillSelector label="Finish Level" options={FINISH_LEVELS} />
+              <field.pillSelector
+                label="Finish Level"
+                options={FINISH_LEVELS}
+              />
             )}
           </form.AppField>
           <Separator />

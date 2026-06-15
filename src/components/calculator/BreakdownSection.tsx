@@ -57,7 +57,7 @@ const BreakdownSection = ({ breakdown, total }: BreakdownSectionProps) => {
 
       <div className="flex items-center justify-between">
         <span className="text-sm font-bold tracking-wide text-foreground uppercase">
-          Mid-point Total
+          Finish Level Total
         </span>
         <span className="text-lg font-bold text-foreground tabular-nums">
           {fmt(total)}
