@@ -1,5 +1,7 @@
 # Construction Cost Calculator
 
+**Live:** [construction-cost-calculator-nu.vercel.app](https://construction-cost-calculator-nu.vercel.app/)
+
 A modern, professional construction cost calculator for Australian residential properties. Built as a redesign of the [Duo Tax Construction Cost Calculator](https://duotax.com.au/construction-cost-calculator/), targeting the quality bar of a major financial institution.
 
 ## Tech Stack
@@ -64,6 +66,28 @@ src/
 ├── index.css              # Tailwind v4 theme tokens (@theme inline)
 └── App.tsx
 ```
+
+## Theming
+
+The app supports **light**, **dark**, and **system** themes via `ThemeProvider` (`src/components/theme-provider.tsx`). The selected theme is persisted to `localStorage` under the key `"theme"`.
+
+**Keyboard shortcut:** Press `D` (when not focused on an input) to toggle between light and dark mode.
+
+**Programmatic usage:**
+
+```tsx
+import { useTheme } from "@/components/theme-provider"
+
+const { theme, setTheme } = useTheme()
+
+setTheme("dark")    // force dark
+setTheme("light")   // force light
+setTheme("system")  // follow OS preference
+```
+
+To change the default theme, update the `defaultTheme` prop on `<ThemeProvider>` in `src/main.tsx`.
+
+All colour tokens for both modes are defined in `src/index.css` — `:root` for light and `.dark` for dark. To customise the palette, edit the `oklch(...)` values there directly.
 
 ## Architecture Notes
 
