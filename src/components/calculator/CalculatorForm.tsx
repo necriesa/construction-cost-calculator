@@ -1,3 +1,5 @@
+import { useEffect } from "react"
+import { useStore } from "@tanstack/react-store"
 import { useAppForm } from "@/hooks/useAppForm"
 import {
   CalculatorFormSchema,
@@ -18,7 +20,11 @@ import {
 import { Separator } from "@/components/ui/separator"
 import { SelectItem } from "@/components/ui/select"
 
-const CalculatorForm = () => {
+interface CalculatorFormProps {
+  onValuesChange?: (values: CalculatorFormInput) => void
+}
+
+const CalculatorForm = ({ onValuesChange }: CalculatorFormProps) => {
   const form = useAppForm({
     defaultValues: {
       propertyType: "House",
@@ -40,18 +46,22 @@ const CalculatorForm = () => {
     },
   })
 
+  // Subscribe to form values and sync to parent
+  const values = useStore(form.baseStore, (s) => s.values)
+  useEffect(() => {
+    onValuesChange?.(values)
+  }, [values, onValuesChange])
+
   const renderInclusions = (propertyType: string) => {
     const allowed = INCLUSIONS_BY_TYPE[propertyType] ?? []
-    return INCLUSIONS.filter((inc) => allowed.includes(inc.value)).map(
-      (inc) => (
-        <form.AppField
-          key={inc.value}
-          name={inc.value as keyof CalculatorFormInput}
-        >
-          {(field) => <field.switchCard label={inc.label} />}
-        </form.AppField>
-      )
-    )
+    return INCLUSIONS.filter((inc) => allowed.includes(inc.value)).map((inc) => (
+      <form.AppField
+        key={inc.value}
+        name={inc.value as keyof CalculatorFormInput}
+      >
+        {(field) => <field.switchCard label={inc.label} />}
+      </form.AppField>
+    ))
   }
 
   return (
@@ -80,10 +90,7 @@ const CalculatorForm = () => {
 
           <form.AppField name="finishLevel">
             {(field) => (
-              <field.pillSelector
-                label="Finish Level"
-                options={FINISH_LEVELS}
-              />
+              <field.pillSelector label="Finish Level" options={FINISH_LEVELS} />
             )}
           </form.AppField>
           <Separator />
