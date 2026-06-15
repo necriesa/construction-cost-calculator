@@ -63,7 +63,9 @@ const ResultsPanel = ({ results, formValues }: ResultsPanelProps) => {
                   <p className="text-2xl font-bold text-primary-foreground">
                     {fmt(results.lowEstimate)}
                   </p>
-                  <p className="text-xs text-primary-foreground/60">-8% variance</p>
+                  <p className="text-xs text-primary-foreground/60">
+                    -8% variance
+                  </p>
                 </CardContent>
               </Card>
               <Card className="text-center" variant="outline">
@@ -74,7 +76,9 @@ const ResultsPanel = ({ results, formValues }: ResultsPanelProps) => {
                   <p className="text-2xl font-bold text-primary-foreground">
                     {fmt(results.highEstimate)}
                   </p>
-                  <p className="text-xs text-primary-foreground/60">+9% variance</p>
+                  <p className="text-xs text-primary-foreground/60">
+                    +9% variance
+                  </p>
                 </CardContent>
               </Card>
             </div>
@@ -106,7 +110,8 @@ const ResultsPanel = ({ results, formValues }: ResultsPanelProps) => {
               rel="noopener noreferrer"
             >
               <Button
-                className="mt-6 w-full rounded-md bg-chart-2 p-6 font-bold text-primary-foreground hover:bg-chart-2/80"
+                variant="secondary"
+                className="mt-6 w-full p-6 font-bold"
                 size="lg"
               >
                 Order Initial Cost Report <ArrowRight />
@@ -114,26 +119,13 @@ const ResultsPanel = ({ results, formValues }: ResultsPanelProps) => {
             </a>
 
             <Button
-              className="mt-4 w-full rounded-md p-6 font-bold text-primary-foreground/70 border-primary-foreground/20 hover:bg-primary-foreground/10 hover:text-primary-foreground"
+              className="mt-4 w-full rounded-md border-primary-foreground/20 p-6 font-bold text-primary-foreground/70 hover:bg-primary-foreground/10 hover:text-primary-foreground"
               variant="outline"
             >
               <MailIcon /> Email me these results
             </Button>
           </>
         )}
-        <div className="mt-6 rounded-md border border-primary-foreground/15 bg-primary-foreground/5 p-2">
-          <p className="text-xs leading-relaxed text-primary-foreground/50">
-            <span className="font-bold">Disclaimer: </span>Please note that
-            every effort has been made to ensure that the information provided
-            in this guide is accurate. You should note, however, that the
-            information is intended as a guide only, providing an overview of
-            general information available to property investors. This guide is
-            not intended to be an exhaustive source of information and should
-            not be seen to constitute legal or tax advice. You should, where
-            necessary, seek a second professional opinion for any legal or tax
-            issues raised in your investing affairs.
-          </p>
-        </div>
       </div>
     </div>
   )
