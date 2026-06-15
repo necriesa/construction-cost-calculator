@@ -15,7 +15,7 @@ const fmt = (n: number) =>
 
 const BreakdownSection = ({ breakdown, total }: BreakdownSectionProps) => {
   return (
-    <div className="rounded-lg border bg-background p-6 shadow">
+    <div className="mt-4 mb-4 py-2">
       <h3 className="mb-4 text-sm font-semibold tracking-wider text-muted-foreground uppercase">
         Cost Breakdown
       </h3>
@@ -28,7 +28,7 @@ const BreakdownSection = ({ breakdown, total }: BreakdownSectionProps) => {
           return (
             <div key={i} className="flex items-start justify-between gap-4">
               <div className="min-w-0 flex-1">
-                <p className="text-sm font-medium text-foreground">
+                <p className="text-sm font-semibold text-muted/80">
                   {line.label}
                 </p>
                 {line.note && (
@@ -39,7 +39,7 @@ const BreakdownSection = ({ breakdown, total }: BreakdownSectionProps) => {
                 className={[
                   "shrink-0 text-sm font-semibold tabular-nums",
                   isFirst
-                    ? "text-foreground"
+                    ? "text-muted"
                     : isPositive
                       ? "text-chart-2"
                       : "text-destructive",
@@ -53,28 +53,16 @@ const BreakdownSection = ({ breakdown, total }: BreakdownSectionProps) => {
         })}
       </div>
 
-      <Separator className="my-4" />
+      <Separator className="my-4 bg-muted-foreground/90" />
 
       <div className="flex items-center justify-between">
-        <span className="text-sm font-bold tracking-wide text-foreground uppercase">
+        <span className="text-sm font-bold tracking-wide text-muted uppercase">
           Finish Level Total
         </span>
-        <span className="text-lg font-bold text-foreground tabular-nums">
+        <span className="text-lg font-bold text-chart-2 tabular-nums">
           {fmt(total)}
         </span>
       </div>
-
-      <p className="mt-3 text-xs leading-relaxed text-muted-foreground">
-        <span className="font-bold">Disclaimer: </span>Please note that every
-        effort has been made to ensure that the information provided in this
-        guide is accurate. You should note, however, that the information is
-        intended as a guide only, providing an overview of general information
-        available to property investors. This guide is not intended to be an
-        exhaustive source of information and should not be seen to constitute
-        legal or tax advice. You should, where necessary, seek a second
-        professional opinion for any legal or tax issues raised in your
-        investing affairs.
-      </p>
     </div>
   )
 }

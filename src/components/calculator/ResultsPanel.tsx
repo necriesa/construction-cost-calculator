@@ -89,35 +89,54 @@ const ResultsPanel = ({ results, formValues }: ResultsPanelProps) => {
           </Card>
         )}
 
-        <Separator className="bg-muted-foreground/50" />
+        {results.isReady && (
+          <>
+            <Separator className="bg-muted-foreground/50" />
 
-        <a
-          href="https://duotax.com.au/construction-estimations/initial-cost-report/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Button
-            className="mt-6 w-full rounded-md bg-chart-2 p-6 font-bold text-muted hover:bg-chart-2/80"
-            size="lg"
-          >
-            Order Initial Cost Report <ArrowRight />
-          </Button>
-        </a>
+            <BreakdownSection
+              breakdown={results.breakdown}
+              total={results.midEstimate}
+            />
 
-        <Button
-          className="mt-4 w-full rounded-md p-6 font-bold text-muted-foreground"
-          variant="outline"
-        >
-          <MailIcon /> Email me these results
-        </Button>
+            <Separator className="bg-muted-foreground/50" />
+
+            <a
+              href="https://duotax.com.au/construction-estimations/initial-cost-report/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Button
+                className="mt-6 w-full rounded-md bg-chart-2 p-6 font-bold text-muted hover:bg-chart-2/80"
+                size="lg"
+              >
+                Order Initial Cost Report <ArrowRight />
+              </Button>
+            </a>
+
+            <Button
+              className="mt-4 w-full rounded-md p-6 font-bold text-muted-foreground"
+              variant="outline"
+            >
+              <MailIcon /> Email me these results
+            </Button>
+
+            <div className="mt-6 rounded-md border border-accent/20 bg-accent/5 p-2">
+              <p className="text-xs leading-relaxed text-muted-foreground">
+                <span className="font-bold">Disclaimer: </span>Please note that
+                every effort has been made to ensure that the information
+                provided in this guide is accurate. You should note, however,
+                that the information is intended as a guide only, providing an
+                overview of general information available to property investors.
+                This guide is not intended to be an exhaustive source of
+                information and should not be seen to constitute legal or tax
+                advice. You should, where necessary, seek a second professional
+                opinion for any legal or tax issues raised in your investing
+                affairs.
+              </p>
+            </div>
+          </>
+        )}
       </div>
-
-      {results.isReady && (
-        <BreakdownSection
-          breakdown={results.breakdown}
-          total={results.midEstimate}
-        />
-      )}
     </div>
   )
 }
