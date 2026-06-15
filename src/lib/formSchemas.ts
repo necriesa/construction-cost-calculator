@@ -102,3 +102,10 @@ export const CalculatorFormSchema = z
 
 export type CalculatorFormValues = z.infer<typeof CalculatorFormSchema>
 export type CalculatorFormInput = z.input<typeof CalculatorFormSchema>
+export const EmailSchema = z.object({
+  firstName: z.string().min(1, "First name is required"),
+  lastName: z.string().min(1, "Last name is required"),
+  email: z.string().email("Invalid email address"),
+})
+
+export type EmailFormValues = z.infer<typeof EmailSchema>

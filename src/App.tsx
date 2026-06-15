@@ -1,6 +1,7 @@
 import ResultsPanel from "./components/calculator/ResultsPanel"
 import CalculatorForm from "./components/calculator/CalculatorForm"
 import MobileResultsBar from "./components/calculator/MobileResultsBar"
+import ExportModal from "./components/calculator/ExportModal"
 import { useCalculator } from "./hooks/useCalculator"
 import { useState } from "react"
 import type { CalculatorFormInput } from "./lib/formSchemas"
@@ -8,6 +9,12 @@ import type { CalculatorFormInput } from "./lib/formSchemas"
 export function App() {
   const [formValues, setFormValues] = useState<CalculatorFormInput | null>(null)
   const results = useCalculator(formValues)
+  const [modalOpen, setModalOpen] = useState(false)
+  const [isSendingEmail, setIsSendingEmail] = useState(false)
+
+  const handleOpenModal = () => setModalOpen(true)
+  const handleCloseModal = () => setModalOpen(false)
+  const handleSendEmail = () => setIsSendingEmail(false)
 
   return (
     <div className="min-h-screen">
@@ -26,7 +33,6 @@ export function App() {
         </p>
       </header>
 
-      {/* pb-28 on mobile leaves room above the fixed MobileResultsBar */}
       <main className="mx-auto -mt-7 grid max-w-[1280px] grid-cols-1 items-start gap-6 px-5 pb-28 md:grid-cols-[1fr_420px] md:pb-16">
         <div>
           <CalculatorForm onValuesChange={setFormValues} />
@@ -46,11 +52,29 @@ export function App() {
         </div>
 
         <aside className="sticky top-6 hidden md:block">
-          <ResultsPanel results={results} formValues={formValues} />
+          <ResultsPanel
+            results={results}
+            formValues={formValues}
+            onEmailResults={handleOpenModal}
+          />
         </aside>
       </main>
 
-      <MobileResultsBar results={results} formValues={formValues} />
+      <MobileResultsBar
+        results={results}
+        formValues={formValues}
+        onEmailResults={handleOpenModal}
+      />
+
+      <ExportModal
+        isOpen={modalOpen}
+        onOpenChange={setModalOpen}
+        isSendingEmail={isSendingEmail}
+        onSendEmail={handleSendEmail}
+        onClose={handleCloseModal}
+        results={results}
+        formValues={formValues}
+      />
     </div>
   )
 }

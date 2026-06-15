@@ -7,6 +7,7 @@ import { FINISH_LEVELS } from "@/lib/data"
 interface MobileResultsBarProps {
   results: CalculatorResults
   formValues: CalculatorFormInput | null
+  onEmailResults?: () => void
 }
 
 const fmt = (n: number) =>
@@ -16,7 +17,7 @@ const fmt = (n: number) =>
     maximumFractionDigits: 0,
   })
 
-const MobileResultsBar = ({ results, formValues }: MobileResultsBarProps) => {
+const MobileResultsBar = ({ results, formValues, onEmailResults }: MobileResultsBarProps) => {
   const finishLabel =
     FINISH_LEVELS.find((f) => f.value === formValues?.finishLevel)?.label ??
     "Standard"
@@ -56,6 +57,7 @@ const MobileResultsBar = ({ results, formValues }: MobileResultsBarProps) => {
           <Button
             variant="secondary"
             disabled={!results.isReady}
+            onClick={onEmailResults}
             className="shrink-0 gap-1.5 disabled:opacity-40"
           >
             <MailIcon className="h-4 w-4" />
@@ -64,7 +66,6 @@ const MobileResultsBar = ({ results, formValues }: MobileResultsBarProps) => {
         </div>
       </div>
 
-      {/* Safe-area spacer for phones with home bars */}
       <div
         className="bg-primary"
         style={{ height: "env(safe-area-inset-bottom)" }}

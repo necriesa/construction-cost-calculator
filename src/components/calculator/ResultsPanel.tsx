@@ -10,6 +10,7 @@ import { FINISH_LEVELS, PROPERTY_TYPES } from "@/lib/data"
 interface ResultsPanelProps {
   results: CalculatorResults
   formValues: CalculatorFormInput | null
+  onEmailResults?: () => void
 }
 
 const fmt = (n: number) =>
@@ -19,7 +20,7 @@ const fmt = (n: number) =>
     maximumFractionDigits: 0,
   })
 
-const ResultsPanel = ({ results, formValues }: ResultsPanelProps) => {
+const ResultsPanel = ({ results, formValues, onEmailResults }: ResultsPanelProps) => {
   const propertyLabel =
     PROPERTY_TYPES.find((p) => p.value === formValues?.propertyType)?.label ??
     "Property"
@@ -121,6 +122,7 @@ const ResultsPanel = ({ results, formValues }: ResultsPanelProps) => {
             <Button
               className="mt-4 w-full rounded-md border-primary-foreground/20 p-6 font-bold text-primary-foreground/70 hover:bg-primary-foreground/10 hover:text-primary-foreground"
               variant="outline"
+              onClick={onEmailResults}
             >
               <MailIcon /> Email me these results
             </Button>
